@@ -86,12 +86,12 @@ for i in aarch64-linux-android arm-linux-androideabi \
 if [ -e "$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal.so" ]; then
 	if [ -n "$(patchelf --print-needed "$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal/util.so" | grep bigdecimal.so)" ]; then
             exit 0
-    fi
+        fi
 
     patchelf --add-needed \
     	"$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal.so" \
     	"$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal/util.so"
-    fi
+fi
 
 echo "[#]You Can directly use msfvenom or msfconsole as they are Symlinked to $PREFIX/bin
 "
