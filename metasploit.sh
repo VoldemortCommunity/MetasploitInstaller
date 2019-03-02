@@ -76,26 +76,12 @@ createdb msf_database
 
 rm $msfpath/$msfvar.tar.gz
 
-#fix for ruby.x.x.x > 2.5.x
 
-apt install -yq patchelf
+cd "$cwd/MetasploitInstaller"
 
-for i in aarch64-linux-android arm-linux-androideabi \
-    i686-linux-android x86_64-linux-android; do
-    
-if [ -e "$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal.so" ]; then
-	if [ -n "$(patchelf --print-needed "$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal/util.so" | grep bigdecimal.so)" ]; then
-            exit 0
-        fi
+bash fix-ruby.sh
 
-    patchelf --add-needed \
-    	"$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal.so" \
-    	"$PREFIX/lib/ruby/2.6.0/${i}/bigdecimal/util.so"
-fi
-
-echo "[#]You Can directly use msfvenom or msfconsole as they are Symlinked to $PREFIX/bin
-"
-echo "[#]Join @VoldemortCommunity (Telegram) for More!!!
-"
-echo "[#]GitHub : https://GitHub.com/VoldemortCommunity
-"
+echo "[#]You Can directly use msfvenom or msfconsole as they are Symlinked 
+to $PREFIX/bin \n"
+echo "[#]Join @VoldemortCommunity (Telegram) for More!!! \n"
+echo "[#]GitHub : https://GitHub.com/VoldemortCommunity \n "
