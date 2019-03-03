@@ -1,5 +1,16 @@
 #!/data/data/com.termux/files/usr/bin/bash 
 
+R="\e[91m";
+RR="\e[91;7m";
+G="\e[92m";
+GG="\e[92;7m";
+B="\e[0;37m";
+BB="\e[36;7m";
+Y="\e[93m";
+YY="\e[93;7m";
+C="\e[1;96m"
+X="\e[0m";
+
 cwd=$(pwd)
 name=$(basename "$0")
 export msfinst="$cwd/$name"
@@ -7,21 +18,23 @@ export msfinst="$cwd/$name"
 msfver=5.0.8
 msfpath='/data/data/com.termux/files/home'
 if [ -d "$msfpath/metasploit-framework" ]; then
-	echo "[#]Deleting Obsolete Files..."
+	printf "[#]Deleting Obsolete Files..."
         rm $msfpath/metasploit-framework -rf
 fi
 apt update
 apt install -y autoconf bison clang coreutils curl figlet findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner ruby
+printf "$R"
 figlet -c "Metasploit!!"
-echo "
 
-[#] MetaSploit Framework Installer by @hewhomustn0tbenamed (Telegram)!!
-[#] Join @VoldemortCommunity (Telegram) For More!!
+printf "
+$G
+[#] MetaSploit Framework Installer by $R@hewhomustn0tbenamed (Telegram)!!$G
+[#] Join $R@VoldemortCommunity (Telegram)$G For More!!
 [#] Last Update : 28/02/2019 
 [#] Contact me on Telegram if you Face and Problems!!
 [#] v0.3
-[#] GitHub : https://github.com/VoldemortCommunity
-
+$G[#] GitHub : https://github.com/VoldemortCommunity
+$B
 "
 cd $msfpath
 curl -LO https://github.com/rapid7/metasploit-framework/archive/$msfver.tar.gz
@@ -45,7 +58,7 @@ update_rubygems
 cd $msfpath/metasploit-framework
 bundle install -j5
 
-echo "[#]Gems Installed..."
+printf "$Y[#]Gems Installed...$B"
 $PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
 
 if [ -e $PREFIX/bin/msfconsole ];then
@@ -68,7 +81,7 @@ chmod +rwx $PREFIX/bin/msfvenom
 (termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0.20.0/lib/pg_ext.so) & 
 spinner $!
 
-echo "[#]Creating database...."
+printf "$Y[#]Creating database....$B"
 
 cd $msfpath/metasploit-framework/config
 curl -LO https://Auxilus.github.io/database.yml
@@ -87,9 +100,9 @@ cd $cwd
 
 bash fix-ruby.sh
 
-echo "
-
+printf "
+$Y
 [#]You Can directly use msfvenom or msfconsole as they are Symlinked 
 to $PREFIX/bin
-[#]Join @VoldemortCommunity (Telegram) for More!!!
-[#]GitHub : https://GitHub.com/VoldemortCommunity"
+[#]Join $G@VoldemortCommunity (Telegram)$Y for More!!!
+$G[#]GitHub : https://GitHub.com/VoldemortCommunity$X"
