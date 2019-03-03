@@ -3,7 +3,7 @@
 ## For Educational Purposes Only!! xD
 ###### P.S. You Know What I Mean! xD
 ## Alpha Release Notes!!
-* Should be Completely Functional...
+* ~~Should be~~ **IS** Completely Functional...
 * Report any Bugs at https://t.me/hewhomustn0tbenamed (Telegram)
 * Join the Group at https://t.me/VoldemortCommunity (Telegram)
 * Enjoy!!
